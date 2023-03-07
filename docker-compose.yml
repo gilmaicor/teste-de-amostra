@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    container_name: 'pgsql'
+    restart: always
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: nestjs
+      POSTGRES_PASSWORD: 12345
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  api:
+    container_name: api
+    build: 
+      context: .
+      target: dev
+    restart: always
+    links:
+      - db:db
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - .:/home/api
+
+volumes:
+  pg-data:
