@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ToxicologicalSampleModule } from './toxicological-sample/toxicological-sample.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AuthModule } from './auth/auth.module';
       entities: [__dirname + '/../**/*.entity.{js,ts}'],
       synchronize: true,
     }),
+    ToxicologicalSampleModule,
   ],
   controllers: [AppController],
   providers: [AppService],
