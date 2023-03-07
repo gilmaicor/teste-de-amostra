@@ -23,7 +23,7 @@ services:
     container_name: api
     build: 
       context: .
-      target: dev
+      target: debug
     restart: always
     links:
       - db:db
